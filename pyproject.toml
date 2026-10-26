@@ -1,0 +1,9 @@
+[project]
+name = "research-rag"
+version = "0.1.0"
+description = "A RAG assistant over AI research papers, with a retrieval evaluation"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
