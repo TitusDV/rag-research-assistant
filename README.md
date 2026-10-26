@@ -2,6 +2,8 @@
 
 A retrieval-augmented assistant that answers questions about five well-known papers on retrieval and RAG, built so its retrieval quality can be measured rather than guessed.
 
+You will see that I have used the same method that was used in telecare rag project
+
 ## Papers
 
 | arXiv | Paper |
