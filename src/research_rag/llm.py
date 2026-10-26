@@ -6,7 +6,8 @@ def build_chat_model(model: str) -> BaseChatModel:
     if model.startswith("gpt"):
         from langchain_openai import ChatOpenAI
 
-        return ChatOpenAI(model=model, temperature=0)  # reads OPENAI_API_KEY from the environment
+        # No temperature: current OpenAI models are reasoning models, which may not accept one.
+        return ChatOpenAI(model=model)  # reads OPENAI_API_KEY from the environment
     from langchain_ollama import ChatOllama
 
     return ChatOllama(model=model, temperature=0)
