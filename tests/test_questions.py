@@ -25,7 +25,7 @@ def test_evidence_check_ignores_case_spacing_and_line_hyphens():
 
 def test_sample_pages_is_balanced_reproducible_and_skips_bad_pages():
     pages = [page("a", i) for i in range(5)] + [page("b", i) for i in range(5)]
-    pages += [page("a", 9, "short"), page("b", 9, "References\n" + TEXT)]
+    pages += [page("a", 9, "short"), page("b", 9, "References\n" + TEXT)]  # too short; reference list
     picked = sample_pages(pages, per_paper=2, seed=1)
     assert sorted(p.metadata["paper"] for p in picked) == ["a", "a", "b", "b"]
     assert all(p.metadata["page"] != 9 for p in picked)
@@ -58,3 +58,37 @@ def test_jsonl_round_trip(tmp_path):
     rows = [{"id": "a", "question": "Q?"}, {"id": "b", "question": "Ā?"}]
     save_jsonl(rows, tmp_path / "q.jsonl")
     assert load_jsonl(tmp_path / "q.jsonl") == rows
+
+
+
+def ref_page(paper, n):
+    return page(paper, n, "\n".join(f"Author {k}. {2015 + k % 9}. Title {k}. In Proc. of ACL {2016 + k % 7}." for k in range(30)))
+
+
+def test_reference_list_runs_from_heading_to_appendix():
+    from research_rag.questions import reference_pages
+    end_of_body = page("p", 9, TEXT + "\nConclusion\nWe did well.\nR EFERENCES\nAuthor A. 2020. A title.")
+    appendix = page("p", 13, "A Appendix\nMore details about training. " * 30)
+    body_with_many_citations = page("q", 6, TEXT + " (Clark et al. 2018; Lee 2019; Kim 2020; Ho 2021)" * 20)
+    pages = [page("p", 8), end_of_body, ref_page("p", 10), ref_page("p", 11),
+             page("p", 12, "References\n" + ref_page("p", 12).page_content), appendix, body_with_many_citations]
+    assert reference_pages(pages) == {("p", 10), ("p", 11), ("p", 12)}
+
+
+def test_heading_at_top_skips_that_page_too():
+    from research_rag.questions import reference_pages
+    pages = [page("r", 5, "Preprint.\nReferences\n" + ref_page("r", 5).page_content), page("r", 6, "Appendix " * 200)]
+    assert reference_pages(pages) == {("r", 5)}
+
+
+def test_sample_pages_skips_excluded_pages():
+    pages = [page("a", i) for i in range(4)]
+    picked = sample_pages(pages, per_paper=4, exclude={("a", 0), ("a", 1)})
+    assert sorted(p.metadata["page"] for p in picked) == [2, 3]
+
+
+def test_save_jsonl_can_append(tmp_path):
+    path = tmp_path / "q.jsonl"
+    save_jsonl([{"id": "a"}], path)
+    save_jsonl([{"id": "b"}], path, append=True)
+    assert [r["id"] for r in load_jsonl(path)] == ["a", "b"]

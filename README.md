@@ -22,6 +22,7 @@ The PDFs are downloaded from arXiv at runtime and are not stored in this repo.
 - **Chunk:** pages are split with a recursive character splitter; chunks keep their paper and page labels.
 - **Retrieve:** three retrievers over the same chunks: BM25 keyword search, dense embedding search, and a hybrid of the two.
 - **Test questions:** a model reads sampled pages (the same number from each paper) and writes one question per page, with a short exact quote as evidence. Questions whose quote is not actually on the page are dropped automatically, and the rest are approved or rejected by hand before they are used.
+- **Compare:** BM25, dense and hybrid retrieval are each run on whole pages and on 1000, 500 and 250 character chunks, and scored on the approved questions.
 - **Measure:** retrieval is scored with hit rate@k and mean reciprocal rank (MRR). A result counts as correct when it comes from the page a test question was written from, so different chunk sizes are compared on the same labels.
 
 ## Run it
@@ -34,6 +35,7 @@ python -m pytest
 cp .env.example .env              # choose the model
 python scripts/make_questions.py  # writes eval/questions.jsonl
 python scripts/review_questions.py
+python scripts/run_eval.py        # writes eval/results.md
 ```
 
 ## Structure
@@ -46,11 +48,15 @@ src/research_rag/
   metrics.py      hit rate@k and MRR
   questions.py    test-question generation and the evidence check
   llm.py          Ollama or OpenAI chat model
+  evaluate.py     scores every retriever and chunk size
 scripts/
   download_papers.py
   make_questions.py
   review_questions.py
+  check_reference_filter.py
+  run_eval.py
 eval/
   questions.jsonl the reviewed test set
+  results.md      the comparison table
 tests/
 ```
