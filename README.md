@@ -16,7 +16,7 @@ The PDFs are downloaded from arXiv when you run it. They are not in the repo bec
 
 ## How I tested retrieval
 
-Every page of every paper is labelled with its arXiv id and page number, and those labels stay with the chunks after splitting. I then needed questions where I knew which page had the answer. A model (gpt-6-luna) read sampled pages and wrote one question per page, along with an exact quote from the page as evidence. If the quote wasn't really on the page, the question was thrown out.
+Every page of every paper is labelled with its arXiv id and page number, and those labels stay with the chunks after splitting. I then needed questions where I knew which page had the answer. Of course I used AI for this task where the model (gpt-6-luna) read sampled pages and wrote one question per page, along with an exact quote from the page as evidence. If the quote wasn't really on the page, the question was thrown out.
 
 The questions still needed checking. A lot of them were bad in ways I didn't expect: questions about citations in the reference list, about which table shows what, about trivia inside worked examples, or about the paper's main claim, which appears on several pages so there is no single right answer. I reviewed the first batch by hand, then wrote an LLM judge that follows the same rules. It agreed with my decisions on 94% of 36 questions (`eval/judge_check.md`), so I let it review the second batch.
 
@@ -43,7 +43,7 @@ What I took from it:
 ## Running it
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt  #shopping list
 python scripts/download_papers.py
 python -m pytest
 
