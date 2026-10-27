@@ -1,10 +1,8 @@
 # RAG Research Assistant
 
-A retrieval-augmented assistant that answers questions about five well-known papers on retrieval and RAG, built so its retrieval quality can be measured rather than guessed.
+A question-answering assistant over five research papers about retrieval and RAG. My earlier [RAG chatbot](https://github.com/TitusDV/telecare-rag-chatbot) used hybrid retrieval but I never measured whether it actually found the right passages. This project uses the same approach and this time I measured it.
 
-You will see that I have used the same method that was used in telecare rag project
-
-## Papers
+The papers:
 
 | arXiv | Paper |
 |---|---|
@@ -14,62 +12,62 @@ You will see that I have used the same method that was used in telecare rag proj
 | 2309.15217 | Ragas: Automated Evaluation of Retrieval Augmented Generation |
 | 2310.11511 | Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection |
 
-The PDFs are downloaded from arXiv at runtime and are not stored in this repo.
+The PDFs are downloaded from arXiv when you run it. They are not in the repo because arXiv's licence doesn't allow redistributing them.
 
-## How it works
+## How I tested retrieval
 
-- **Load:** each paper is read page by page, and every page is labelled with its arXiv id and page number.
-- **Chunk:** pages are split with a recursive character splitter; chunks keep their paper and page labels.
-- **Retrieve:** three retrievers over the same chunks: BM25 keyword search, dense embedding search, and a hybrid of the two.
-- **Test questions:** a model reads sampled pages (the same number from each paper) and writes one question per page, with a short exact quote as evidence. Questions whose quote is not actually on the page are dropped automatically. The rest are reviewed against a checklist (no citations, no layout or example trivia, no headline claims from the abstract, no duplicates, no answers beyond the evidence), by hand or by an LLM judge whose agreement with human review is measured (`eval/judge_check.md`).
-- **Compare:** BM25, dense and hybrid retrieval are each run on whole pages and on 1000, 500 and 250 character chunks, and scored on the approved questions.
-- **Measure:** retrieval is scored with hit rate@k and mean reciprocal rank (MRR). A result counts as correct when it comes from the page a test question was written from, so different chunk sizes are compared on the same labels.
+Every page of every paper is labelled with its arXiv id and page number, and those labels stay with the chunks after splitting. I then needed questions where I knew which page had the answer. A model (gpt-6-luna) read sampled pages and wrote one question per page, along with an exact quote from the page as evidence. If the quote wasn't really on the page, the question was thrown out.
+
+The questions still needed checking. A lot of them were bad in ways I didn't expect: questions about citations in the reference list, about which table shows what, about trivia inside worked examples, or about the paper's main claim, which appears on several pages so there is no single right answer. I reviewed the first batch by hand, then wrote an LLM judge that follows the same rules. It agreed with my decisions on 94% of 36 questions (`eval/judge_check.md`), so I let it review the second batch.
+
+Each retriever (BM25, dense embeddings, and a hybrid of the two) was run on whole pages and on 1000, 500 and 250 character chunks. A result counts as correct if it comes from the question's page. Scoring by page instead of by chunk means the answer key doesn't change when the chunk size does.
 
 ## Results
 
-36 reviewed questions, top 10 results per retriever (full table: eval/results.md).
+36 questions, top 10 results per retriever. Full table in `eval/results.md`.
 
-Retriever	Chunk size	Hit@1	Hit@5	MRR@10
-BM25	whole page	0.72	0.92	0.788
-BM25	1000	0.69	0.97	0.788
-Hybrid	250	0.69	0.89	0.768
-Dense	250	0.61	0.81	0.688
-Dense	whole page	0.22	0.53	0.359
-BM25 and hybrid retrieval are effectively tied at the top; with 36 questions, gaps under about 0.03 are within one question.
-Dense retrieval improves sharply as chunks shrink, because all-MiniLM-L6-v2 reads at most 256 tokens and ignores the rest of a longer chunk.
-BM25 likely benefits from the generated questions reusing each page’s wording, so these results favour keyword search more than real user questions would.
-The LLM judge agreed with human review on 94% of 36 questions.
+| Retriever | Chunk size | Hit@1 | Hit@5 | MRR@10 |
+|---|---|---|---|---|
+| BM25 | whole page | 0.72 | 0.92 | 0.788 |
+| BM25 | 1000 | 0.69 | 0.97 | 0.788 |
+| Hybrid | 250 | 0.69 | 0.89 | 0.768 |
+| Dense | 250 | 0.61 | 0.81 | 0.688 |
+| Dense | whole page | 0.22 | 0.53 | 0.359 |
 
-## Run these
+What I took from it:
 
-cp .env.example .env              # choose the model
-python scripts/make_questions.py  # writes eval/questions.jsonl
-python scripts/review_questions.py   # by hand:
-python scripts/auto_review.py --check  # measure the judge against revews
-python scripts/run_eval.py        # writes eval/results.md
+- With the first 19 questions, hybrid at 250 characters looked like the clear winner. With 36 it's tied with BM25. One question moves hit@1 by about 0.03, so small gaps here don't mean much.
+- Dense retrieval on whole pages was poor, and it got much better as chunks got smaller. The embedding model (all-MiniLM-L6-v2) only reads the first 256 tokens of its input, so on a full page most of the text is never embedded.
+- BM25 probably does better here than it would with real users, because the generated questions tend to reuse the page's own wording.
+
+## Running it
+
+```bash
+pip install -r requirements.txt
+python scripts/download_papers.py
+python -m pytest
+
+cp .env.example .env                   
+python scripts/make_questions.py        
+python scripts/review_questions.py     
+python scripts/auto_review.py --check  
+python scripts/auto_review.py           
+python scripts/run_eval.py            
 ```
 
-## Structure
+## Code
 
 ```
 src/research_rag/
-  papers.py       the paper list
-  chunking.py     loading and chunking, with paper and page labels
-  retrievers.py   BM25, dense and hybrid retrievers
-  metrics.py      hit rate@k and MRR
-  questions.py    test-question generation and the evidence check
-  llm.py          Ollama or OpenAI chat model
-  review.py       the LLM judge and its agreement check
-  evaluate.py     scores every retriever and chunk size
-scripts/
-  download_papers.py
-  make_questions.py
-  review_questions.py
-  auto_review.py
-  check_reference_filter.py
-  run_eval.py
-eval/
-  questions.jsonl the reviewed test set
-  results.md      the comparison table
+  papers.py       the five papers
+  chunking.py     loading and chunking with paper and page labels
+  retrievers.py   BM25, dense and hybrid
+  questions.py    question generation, evidence check, reference-page filter
+  review.py       the LLM judge
+  evaluate.py     the comparison
+  metrics.py      hit rate and MRR
+  llm.py          OpenAI or Ollama model
+scripts/          the commands above, plus check_reference_filter.py
+eval/             the questions, results and judge check
 tests/
 ```
