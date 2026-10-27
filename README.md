@@ -21,7 +21,7 @@ The PDFs are downloaded from arXiv at runtime and are not stored in this repo.
 - **Load:** each paper is read page by page, and every page is labelled with its arXiv id and page number.
 - **Chunk:** pages are split with a recursive character splitter; chunks keep their paper and page labels.
 - **Retrieve:** three retrievers over the same chunks: BM25 keyword search, dense embedding search, and a hybrid of the two.
-- **Test questions:** a model reads sampled pages (the same number from each paper) and writes one question per page, with a short exact quote as evidence. Questions whose quote is not actually on the page are dropped automatically, and the rest are approved or rejected by hand before they are used.
+- **Test questions:** a model reads sampled pages (the same number from each paper) and writes one question per page, with a short exact quote as evidence. Questions whose quote is not actually on the page are dropped automatically. The rest are reviewed against a checklist (no citations, no layout or example trivia, no headline claims from the abstract, no duplicates, no answers beyond the evidence), by hand or by an LLM judge whose agreement with human review is measured (`eval/judge_check.md`).
 - **Compare:** BM25, dense and hybrid retrieval are each run on whole pages and on 1000, 500 and 250 character chunks, and scored on the approved questions.
 - **Measure:** retrieval is scored with hit rate@k and mean reciprocal rank (MRR). A result counts as correct when it comes from the page a test question was written from, so different chunk sizes are compared on the same labels.
 
@@ -34,7 +34,9 @@ python -m pytest
 
 cp .env.example .env              # choose the model
 python scripts/make_questions.py  # writes eval/questions.jsonl
-python scripts/review_questions.py
+python scripts/review_questions.py   # by hand, or:
+python scripts/auto_review.py --check  # measure the judge against your reviews
+python scripts/auto_review.py          # let the judge decide the rest
 python scripts/run_eval.py        # writes eval/results.md
 ```
 
@@ -48,11 +50,13 @@ src/research_rag/
   metrics.py      hit rate@k and MRR
   questions.py    test-question generation and the evidence check
   llm.py          Ollama or OpenAI chat model
+  review.py       the LLM judge and its agreement check
   evaluate.py     scores every retriever and chunk size
 scripts/
   download_papers.py
   make_questions.py
   review_questions.py
+  auto_review.py
   check_reference_filter.py
   run_eval.py
 eval/

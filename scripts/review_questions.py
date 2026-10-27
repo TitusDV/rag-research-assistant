@@ -29,6 +29,7 @@ def main() -> None:
             break
         if choice != "s":
             row["status"] = "approved" if choice == "a" else "rejected"
+            row["reviewed_by"] = "human"
             save_jsonl(rows, PATH)
         print()
     counts = {s: sum(r["status"] == s for r in rows) for s in ("approved", "rejected", "unreviewed")}
