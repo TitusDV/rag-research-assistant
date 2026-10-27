@@ -24,7 +24,7 @@ Each retriever (BM25, dense embeddings, and a hybrid of the two) was run on whol
 
 ## Results
 
-36 questions, top 10 results per retriever. Full table in `eval/results.md`.
+36 questions, top 10 results per retriever. Full table in `eval/results.md`. Used these to justify why I particularly used these and how they performed.
 
 | Retriever | Chunk size | Hit@1 | Hit@5 | MRR@10 |
 |---|---|---|---|---|
