@@ -3,17 +3,17 @@
 .env.*
 !.env.example
 
-# Python
+
 __pycache__/
 *.py[cod]
 .venv/
 venv/
 env/
 
-# Jupyter
+
 .ipynb_checkpoints/
 
-# Downloaded source documents (fetched at runtime)
+
 data/
 *.pdf
 
@@ -21,7 +21,7 @@ data/
 .gradio/
 flagged/
 
-# OS / editor
+
 .DS_Store
 Thumbs.db
 .vscode/

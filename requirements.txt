@@ -12,6 +12,7 @@ pypdf
 rank-bm25
 docarray
 sentence-transformers
+gradio
 
 pytest
 pymupdf  # only used by the tests, to make a sample PDF
