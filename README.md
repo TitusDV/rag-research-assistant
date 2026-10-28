@@ -56,20 +56,20 @@ pip install -r requirements.txt
 python scripts/download_papers.py
 python -m pytest
 
-cp .env.example .env                    # set MODEL and OPENAI_API_KEY
-python scripts/make_questions.py        # write questions from sampled pages
-python scripts/review_questions.py      # review by hand
-python scripts/auto_review.py --check   # compare the judge with your own reviews
-python scripts/auto_review.py           # let the judge review the rest
-python scripts/run_eval.py              # score every retriever and chunk size
-python app.py                           # ask questions in the browser
+cp .env.example .env                    
+python scripts/make_questions.py       
+python scripts/review_questions.py     
+python scripts/auto_review.py --check  
+python scripts/auto_review.py          
+python scripts/run_eval.py             
+python app.py                          
 ```
 
 ## Code
 
 ```
 src/research_rag/
-  papers.py       the five papers
+  papers.py       the five papers (you can add more and of your own interest)
   chunking.py     loading and chunking with paper and page labels
   retrievers.py   BM25, dense and hybrid
   questions.py    question generation, evidence check, reference-page filter
@@ -79,7 +79,7 @@ src/research_rag/
   metrics.py      hit rate and MRR
   llm.py          OpenAI or Ollama model
 app.py            the web app
-scripts/          the commands above, plus check_reference_filter.py
+scripts/          the commands
 eval/             the questions, results and judge check
 tests/
 ```
