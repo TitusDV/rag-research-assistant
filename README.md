@@ -2,7 +2,8 @@
 
 ![tests](https://github.com/TitusDV/rag-research-assistant/actions/workflows/tests.yml/badge.svg)
 
-A question-answering assistant over five research papers about retrieval and RAG. My earlier [Telecare RAG chatbot](https://github.com/TitusDV/telecare-rag-chatbot) used hybrid retrieval but I never measured whether it actually found the right passages. This project uses the same approach and this time I measured it.
+
+A question-answering assistant over five research papers about retrieval and RAG. I first built a version of this in 2024, alongside my [Telecare RAG chatbot](https://github.com/TitusDV/telecare-rag-chatbot), using an older model. This repo is a 2026 rebuild: cleaner code, tests, a reviewed question set and a current model.
 
 The papers:
 
