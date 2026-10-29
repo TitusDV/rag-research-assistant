@@ -1,0 +1,61 @@
+.gradio-container { max-width: 1120px !important; margin: 0 auto !important; padding: 24px 16px 40px !important; }
+footer { display: none !important; }
+
+.top { display: flex; align-items: center; gap: 16px; padding: 4px 0 20px; border-bottom: 1px solid #D6E7EA; margin-bottom: 8px; }
+.top .mark { flex: none; width: 44px; height: 44px; border-radius: 10px; background: #0E5E6F; color: #fff;
+  display: grid; place-items: center; font-weight: 800; font-size: 22px; }
+.top h1 { margin: 0; font-size: 26px; line-height: 1.15; font-weight: 800; color: #0D2A30; letter-spacing: -0.01em; }
+.top p { margin: 4px 0 0; color: #4E6A70; font-size: 15px; }
+.top .repo { margin-left: auto; flex: none; font-size: 14px; font-weight: 600; color: #0E5E6F; text-decoration: none;
+  border: 1px solid #B3D3D9; border-radius: 999px; padding: 8px 14px; }
+.top .repo:hover { background: #EEF6F7; }
+
+.layout { gap: 28px !important; }
+.main .html-container, .side .html-container { padding: 0 !important; }
+.ask-row .block { border: 0 !important; background: none !important; box-shadow: none !important; }
+.ask-row { gap: 10px !important; align-items: stretch !important; }
+.ask-row textarea { font-size: 16px !important; padding: 14px 16px !important; border-radius: 12px !important;
+  border: 1.5px solid #B3D3D9 !important; background: #fff !important; }
+.ask-row textarea:focus { border-color: #0E5E6F !important; box-shadow: 0 0 0 3px #D6E7EA !important; }
+.ask-row button { border-radius: 12px !important; font-size: 16px !important; font-weight: 700 !important; }
+
+.chips { gap: 8px !important; flex-wrap: wrap !important; }
+.chips .chip { flex: 0 1 auto !important; min-width: 0 !important; width: auto !important; background: #EEF6F7 !important;
+  border: 1px solid #D6E7EA !important; color: #0B4C5A !important; border-radius: 999px !important;
+  font-weight: 500 !important; font-size: 13.5px !important; padding: 6px 12px !important; white-space: normal !important;
+  text-align: left !important; box-shadow: none !important; }
+.chips .chip:hover { background: #D6E7EA !important; }
+
+.label, .panel p.label { margin: 0 0 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #4E6A70; }
+.panel { background: #fff; border: 1px solid #D6E7EA; border-radius: 14px; padding: 22px 24px; margin-top: 6px; }
+.panel p { font-size: 16.5px; line-height: 1.65; color: #0D2A30; margin: 0 0 12px; }
+.panel.empty p:not(.label) { color: #4E6A70; }
+.panel.not-covered { background: #FFF6EF; border-color: #FFD3B3; }
+.panel .label + p { margin-top: 0; }
+.cite { padding: 1px 6px; margin-left: 1px; border-radius: 6px; background: #D6E7EA;
+  color: #0B4C5A; font-size: 11.5px; font-weight: 700; line-height: 1; vertical-align: 3px; }
+
+.sources { display: grid; gap: 10px; margin-top: 4px; }
+.panel p.label:not(:first-child) { margin-top: 20px; }
+.source { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border: 1px solid #D6E7EA; border-radius: 10px;
+  text-decoration: none !important; color: #0D2A30 !important; background: #F5FAFA; }
+.source:hover { border-color: #0F6B7E; background: #EEF6F7; }
+.source .num { flex: none; width: 26px; height: 26px; border-radius: 7px; background: #0E5E6F; color: #fff;
+  display: grid; place-items: center; font-weight: 700; font-size: 13px; }
+.source .meta { display: grid; gap: 2px; justify-items: start; text-align: left; font-size: 14.5px; line-height: 1.35; }
+.source .meta span { color: #4E6A70; font-size: 13px; }
+
+.side { background: #fff; border: 1px solid #D6E7EA; border-radius: 14px; padding: 20px 20px 12px !important; }
+.side .label:not(:first-child) { margin-top: 6px; }
+.papers { margin: 0 0 18px; padding-left: 20px; display: grid; gap: 8px; font-size: 14.5px; line-height: 1.4; }
+.papers a { color: #0D2A30; text-decoration: none; }
+.papers a:hover { color: #0E5E6F; text-decoration: underline; }
+.how { margin: 0 0 14px; font-size: 14.5px; line-height: 1.55; color: #4E6A70; }
+.left p { margin: 0; font-size: 13px; color: #4E6A70; }
+
+@media (max-width: 760px) {
+  .top { flex-wrap: wrap; }
+  .top .repo { margin-left: 0; }
+  .top h1 { font-size: 22px; }
+  .panel { padding: 18px; }
+}

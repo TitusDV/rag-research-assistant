@@ -54,8 +54,11 @@ class Assistant:
         self.answerer = answerer
         self.k = k
 
-    def ask(self, question: str) -> dict:
-        docs = self.retriever.invoke(question)[: self.k]
+    def ask(self, question: str, docs: list[Document] | None = None) -> dict:
+        """Pass `docs` to skip retrieval, when it has already been done (the web app does this)."""
+        if docs is None:
+            docs = self.retriever.invoke(question)
+        docs = docs[: self.k]
         result = self.answerer(question, format_context(docs))
         if not result.answered:
             return {"answered": False, "answer": NOT_COVERED, "sources": []}

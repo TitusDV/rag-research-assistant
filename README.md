@@ -2,8 +2,7 @@
 
 ![tests](https://github.com/TitusDV/rag-research-assistant/actions/workflows/tests.yml/badge.svg)
 
-
-A question-answering assistant over five research papers about retrieval and RAG. I first built a version of this in 2024, alongside my [Telecare RAG chatbot](https://github.com/TitusDV/telecare-rag-chatbot), using an older model. This repo is a 2026 rebuild: cleaner code, tests, a reviewed question set and a current model.
+A question-answering assistant over five research papers about retrieval and RAG. My earlier [Telecare RAG chatbot](https://github.com/TitusDV/telecare-rag-chatbot) used hybrid retrieval but I never measured whether it actually found the right passages. This project uses the same approach and this time I measured it.
 
 The papers:
 
@@ -45,9 +44,7 @@ What I took from it:
 
 ## Asking questions
 
-`python app.py` opens a small web app. The assistant uses hybrid retrieval on 500 character chunks: the results above put it level with BM25, and I expect real users to word things differently from the papers, which is where the dense half helps. It answers only from the passages it retrieves, cites them by paper and page, and says "The papers don't cover this." when they don't.
-
-![The app answering a question with sources](docs/app.png)
+`python app.py` opens a small web app. The assistant uses hybrid retrieval on 500 character chunks: the results above put it level with BM25, and I expect real users to word things differently from the papers, which is where the dense half helps. It answers only from the passages it retrieves, cites them by paper and page, and says "The papers don't cover this." when they don't. It downloads the papers itself on first start, so it also runs as a Hugging Face Space.
 
 ## Running it
 
@@ -56,30 +53,32 @@ pip install -r requirements.txt
 python scripts/download_papers.py
 python -m pytest
 
-cp .env.example .env                    
-python scripts/make_questions.py       
-python scripts/review_questions.py     
-python scripts/auto_review.py --check  
-python scripts/auto_review.py          
-python scripts/run_eval.py             
-python app.py                          
+cp .env.example .env                    # set MODEL and OPENAI_API_KEY
+python scripts/make_questions.py        # write questions from sampled pages
+python scripts/review_questions.py      # review by hand
+python scripts/auto_review.py --check   # compare the judge with your own reviews
+python scripts/auto_review.py           # let the judge review the rest
+python scripts/run_eval.py              # score every retriever and chunk size
+python app.py                           # ask questions in the browser
 ```
 
 ## Code
 
 ```
 src/research_rag/
-  papers.py       the five papers (you can add more and of your own interest)
+  papers.py       the five papers
   chunking.py     loading and chunking with paper and page labels
   retrievers.py   BM25, dense and hybrid
   questions.py    question generation, evidence check, reference-page filter
   review.py       the LLM judge
   evaluate.py     the comparison
   answer.py       answering with citations
+  ui.py           the web app's answer panel and daily question limit
   metrics.py      hit rate and MRR
   llm.py          OpenAI or Ollama model
-app.py            the web app
-scripts/          the commands
+app.py, app.css   the web app
+space/            the Hugging Face Space card
+scripts/          the commands above, plus check_reference_filter.py
 eval/             the questions, results and judge check
 tests/
 ```
