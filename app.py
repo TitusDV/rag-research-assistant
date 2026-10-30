@@ -32,16 +32,19 @@ load_dotenv(ROOT / ".env")
 
 PAPER_DIR = ROOT / "data" / "papers"
 download(PAPER_DIR)
+pages = load_papers(PAPER_DIR)
+print(f"loaded {len(pages)} pages, {sum(len(p.page_content) for p in pages)} characters of text")
 print("Building the index (takes a minute) ...")
 assistant = Assistant(
-    load_papers(PAPER_DIR),
-    HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2"),
+    pages,
+    # CPU on purpose: on ZeroGPU, torch reports a (simulated) GPU outside @spaces.GPU functions.
+    HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2", model_kwargs={"device": "cpu"}),
     make_answerer(build_chat_model(os.getenv("MODEL", "llama3"))),
 )
 limit = DailyLimit(int(os.getenv("DAILY_LIMIT", "100")))
 
 EXAMPLES = [
-    "Why do language models miss information in the middle of long contexts?",
+    "What happens when the answer sits in the middle of a long context?",
     "How does Self-RAG decide when to retrieve?",
     "What does Ragas measure without human labels?",
     "How is Dense Passage Retrieval trained?",
@@ -53,9 +56,9 @@ def left_text() -> str:
 
 
 @on_gpu
-def retrieve(question: str):
-    # On ZeroGPU this runs in a GPU slot. The work itself is small enough for CPU.
-    return assistant.retriever.invoke(question)
+def gpu_check() -> None:
+    """Never called. A ZeroGPU Space won't start without at least one @spaces.GPU function,
+    but this app doesn't need a GPU: retrieval and the small embedding model run fine on CPU."""
 
 
 def respond(question: str):
@@ -65,7 +68,9 @@ def respond(question: str):
     if not limit.take():
         return render_message("The daily limit for this demo has been reached. Try again tomorrow."), left_text()
     try:
-        result = assistant.ask(question, docs=retrieve(question))
+        result = assistant.ask(question)
+        print(f"asked: {question!r} answered={result['answered']} "
+              f"sources={[(s['paper'], s['page']) for s in result['sources']]}")
     except Exception as err:  # keep the page usable if the model call fails
         print(f"error: {err!r}")
         return render_message("Something went wrong getting an answer. Please try again."), left_text()
