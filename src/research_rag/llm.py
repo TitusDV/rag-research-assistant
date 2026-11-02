@@ -7,7 +7,8 @@ def build_chat_model(model: str) -> BaseChatModel:
         from langchain_openai import ChatOpenAI
 
         # No temperature: current OpenAI models are reasoning models, which may not accept one.
-        return ChatOpenAI(model=model)  # reads OPENAI_API_KEY from the environment
+        # A stuck request fails after 60 seconds; short network errors are retried twice.
+        return ChatOpenAI(model=model, timeout=60, max_retries=2)  # reads OPENAI_API_KEY from the environment
     from langchain_ollama import ChatOllama
 
     return ChatOllama(model=model, temperature=0)

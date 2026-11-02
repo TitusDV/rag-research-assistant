@@ -63,7 +63,9 @@ def render_result(result: dict) -> str:
         f'target="_blank" rel="noopener">'
         f'<span class="num">{s["n"]}</span>'
         f'<span class="meta"><strong>{html.escape(s["title"])}</strong>'
-        f'<span>Page {s["page"]} · arXiv {html.escape(s["paper"])}</span></span></a>'
+        f'<span>Page {s["page"]} · arXiv {html.escape(s["paper"])}</span>'
+        + (f'<q>{html.escape(s["quote"])}</q>' if s.get("quote") else "")
+        + '</span></a>'
         for s in result["sources"]
     )
     sources = f'<p class="label">Sources</p><div class="sources">{cards}</div>' if cards else ""

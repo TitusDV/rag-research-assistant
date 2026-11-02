@@ -2,7 +2,7 @@
 
 ![tests](https://github.com/TitusDV/rag-research-assistant/actions/workflows/tests.yml/badge.svg)
 
-A question-answering assistant over five research papers about retrieval and RAG. My earlier [Telecare RAG chatbot](https://github.com/TitusDV/telecare-rag-chatbot) used hybrid retrieval but I never measured whether it actually found the right passages. This project uses the same approach and this time I measured it.
+A question-answering assistant over five research papers about retrieval and RAG. It goes further than a typical RAG demo: I built a reviewed test set, compared 12 retrieval setups, checked an LLM judge against my own reviews, and made the app check every citation it shows. My earlier [Telecare RAG chatbot](https://github.com/TitusDV/telecare-rag-chatbot) used hybrid retrieval but I never measured whether it actually found the right passages. This project uses the same approach and this time I measured it.
 
 The papers:
 
@@ -43,7 +43,7 @@ What I took from it:
 
 ## Asking questions
 
-`python app.py` opens a small web app. The assistant uses hybrid retrieval on 500 character chunks, for the reasons above. It answers only from the passages it retrieves, cites them by paper and page, and says "The papers don't cover this." when they don't. It downloads the papers itself on first start, so it also runs as a Hugging Face Space.
+`python app.py` opens a small web app. The assistant uses hybrid retrieval on 500 character chunks, for the reasons above. It answers only from the passages it retrieves, cites them by paper and page, and says "The papers don't cover this." when they don't. Every citation in the answer is checked against the retrieved passages: markers that don't match a passage are dropped, each cited page gets one number, and an answer with no valid citation is treated as not covered. Each source shows the passage it came from. It downloads the papers itself on first start, so it also runs as a Hugging Face Space.
 
 ## Running it
 
@@ -58,6 +58,7 @@ python scripts/review_questions.py      # review by hand
 python scripts/auto_review.py --check   # compare the judge with your own reviews
 python scripts/auto_review.py           # let the judge review the rest
 python scripts/run_eval.py              # score every retriever and chunk size
+python scripts/check_injection.py       # try hidden instructions inside passages against the model
 python app.py                           # ask questions in the browser
 ```
 

@@ -19,3 +19,9 @@ def test_answer_is_escaped_and_citations_become_badges():
 def test_not_covered_has_no_sources():
     html = render_result({"answered": False, "answer": "The papers don't cover this.", "sources": []})
     assert "not-covered" in html and "source" not in html.replace("not-covered", "")
+
+
+def test_source_quote_is_shown_and_escaped():
+    html = render_result({"answered": True, "answer": "Yes [1].",
+                          "sources": [{"n": 1, "paper": "2005.11401", "title": "RAG", "page": 3, "quote": "a <b> c"}]})
+    assert "<q>a &lt;b&gt; c</q>" in html

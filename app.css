@@ -6,7 +6,7 @@ footer { display: none !important; }
   display: grid; place-items: center; font-weight: 800; font-size: 22px; }
 .top h1 { margin: 0; font-size: 26px; line-height: 1.15; font-weight: 800; color: #0D2A30; letter-spacing: -0.01em; }
 .top p { margin: 4px 0 0; color: #4E6A70; font-size: 15px; }
-.top .repo { margin-left: auto; flex: none; font-size: 14px; font-weight: 600; color: #0E5E6F; text-decoration: none;
+.top .repo { margin-left: auto; flex: none; font-size: 14px; font-weight: 600; color: #0E5E6F !important; text-decoration: none !important;
   border: 1px solid #B3D3D9; border-radius: 999px; padding: 8px 14px; }
 .top .repo:hover { background: #EEF6F7; }
 
@@ -44,12 +44,17 @@ footer { display: none !important; }
   display: grid; place-items: center; font-weight: 700; font-size: 13px; }
 .source .meta { display: grid; gap: 2px; justify-items: start; text-align: left; font-size: 14.5px; line-height: 1.35; }
 .source .meta span { color: #4E6A70; font-size: 13px; }
+.source q { display: block; margin-top: 6px; padding-left: 10px; border-left: 2px solid #B3D3D9; color: #28454B;
+  font-size: 13.5px; line-height: 1.5; font-style: italic; }
+.source q::before, .source q::after { content: ""; }
 
 .side { background: #fff; border: 1px solid #D6E7EA; border-radius: 14px; padding: 20px 20px 12px !important; }
 .side .label:not(:first-child) { margin-top: 6px; }
-.papers { margin: 0 0 18px; padding-left: 20px; display: grid; gap: 8px; font-size: 14.5px; line-height: 1.4; }
-.papers a { color: #0D2A30; text-decoration: none; }
-.papers a:hover { color: #0E5E6F; text-decoration: underline; }
+.papers { margin: 0 0 18px !important; padding-left: 20px !important; display: grid; gap: 8px; font-size: 14.5px; line-height: 1.4; }
+.papers li::marker { font-family: inherit; color: #4E6A70; }
+.papers li { padding-left: 2px; margin: 0 !important; }
+.papers a { color: #0D2A30 !important; text-decoration: none !important; }
+.papers a:hover { color: #0E5E6F !important; text-decoration: underline !important; }
 .how { margin: 0 0 14px; font-size: 14.5px; line-height: 1.55; color: #4E6A70; }
 .left p { margin: 0; font-size: 13px; color: #4E6A70; }
 
