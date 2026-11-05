@@ -63,40 +63,56 @@ class Assistant:
         self.k = k
 
     def ask(self, question: str) -> dict:
+        """What the app shows: {answered, answer, sources}."""
+        return self.ask_detailed(question)["final"]
+
+    def ask_detailed(self, question: str) -> dict:
+        """The final answer plus everything needed to audit it: the passages the model saw, in rank order,
+        and the model's raw output before citations were checked and renumbered. Retrieves once."""
         docs = self.retriever.invoke(question)[: self.k]
         result = self.answerer(question, format_context(docs))
-        not_covered = {"answered": False, "answer": NOT_COVERED, "sources": []}
-        answer = (result.answer or "").strip()
-        if not result.answered or not answer or answer == NOT_COVERED:
-            return not_covered
+        passages = [{"n": i, "paper": location(d)[0], "page": location(d)[1] + 1, "text": d.page_content}
+                    for i, d in enumerate(docs, start=1)]
+        raw = {"answered": result.answered, "answer": result.answer, "citations": list(result.citations)}
+        return {"passages": passages, "raw": raw, "final": _finalise(docs, result)}
 
-        def valid(n: int) -> bool:
-            return 1 <= n <= len(docs)
 
-        # What the reader sees decides the sources: markers in the text first, the citation list if the
-        # model left the markers out. An answer with no valid citation at all is treated as unsupported.
-        cited = [n for n in map(int, MARKER.findall(answer)) if valid(n)]
-        cited = cited or [n for n in result.citations if valid(n)]
-        if not cited:
-            return not_covered
+def _finalise(docs: list[Document], result: GeneratedAnswer) -> dict:
+    not_covered = {"answered": False, "answer": NOT_COVERED, "sources": []}
+    answer = (result.answer or "").strip()
+    if not result.answered or not answer or answer == NOT_COVERED:
+        return not_covered
 
-        # Number each cited page once, in order of first use, so every badge matches exactly one card.
-        number, sources = {}, []
-        for n in cited:
-            paper, page = location(docs[n - 1])
-            if (paper, page) not in number:
-                number[(paper, page)] = len(number) + 1
-                sources.append({"n": number[(paper, page)], "paper": paper, "title": PAPERS.get(paper, paper),
-                                "page": page + 1, "quote": excerpt(docs[n - 1].page_content)})
+    def valid(n: int) -> bool:
+        return 1 <= n <= len(docs)
 
-        def renumber(match: re.Match) -> str:
-            n = int(match.group(1))
-            return f"[{number[location(docs[n - 1])]}]" if valid(n) else ""  # drop markers with no passage
+    # What the reader sees decides the sources: markers in the text first, the citation list if the
+    # model left the markers out. An answer with no valid citation at all is treated as unsupported.
+    cited = [n for n in map(int, MARKER.findall(answer)) if valid(n)]
+    cited = cited or [n for n in result.citations if valid(n)]
+    if not cited:
+        return not_covered
 
-        answer = MARKER.sub(renumber, answer)
-        answer = re.sub(r"(\[\d+\])(?:\1)+", r"\1", answer)  # [1][1] -> [1]
-        answer = re.sub(r"[ \t]+([.,;:])", r"\1", answer)      # tidy a space left before punctuation
-        return {"answered": True, "answer": answer, "sources": sources}
+    # Number each cited page once, in order of first use, so every badge matches exactly one card.
+    number, sources = {}, []
+    for n in cited:
+        paper, page = location(docs[n - 1])
+        if (paper, page) not in number:
+            number[(paper, page)] = len(number) + 1
+            sources.append({"n": number[(paper, page)], "paper": paper, "title": PAPERS.get(paper, paper),
+                            "page": page + 1, "quote": excerpt(docs[n - 1].page_content),
+                            "passages": [n]})
+        elif n not in sources[number[(paper, page)] - 1]["passages"]:
+            sources[number[(paper, page)] - 1]["passages"].append(n)
+
+    def renumber(match: re.Match) -> str:
+        n = int(match.group(1))
+        return f"[{number[location(docs[n - 1])]}]" if valid(n) else ""  # drop markers with no passage
+
+    answer = MARKER.sub(renumber, answer)
+    answer = re.sub(r"(\[\d+\])(?:\1)+", r"\1", answer)  # [1][1] -> [1]
+    answer = re.sub(r"[ \t]+([.,;:])", r"\1", answer)      # tidy a space left before punctuation
+    return {"answered": True, "answer": answer, "sources": sources}
 
 
 def excerpt(text: str, limit: int = QUOTE_CHARS) -> str:

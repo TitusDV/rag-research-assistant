@@ -3,7 +3,7 @@ What drop in exact match score on SQuAD v1.1 do the DPR authors cite to illustra
 Why can a SQuAD question be hard to interpret when DPR uses it for open-domain retrieval?,2004.04906,4,many questions lack context in absence of the provided paragraph.
 Which Wikipedia snapshot did the original RAG experiments use as their knowledge source?,2005.11401,4,we use the December 2018 dump.
 "In the RAG ablation that froze the retriever during training, which tasks benefited from letting the retriever learn instead?",2005.11401,7,learned retrieval improves results for all tasks.
-"In the multi-document QA experiment in Lost in the Middle, how were the passages that lacked the answer ordered in the model's input?",2307.03172,3,the distractor documents are presented in order of decreasing relevance.
+"In the multi-document QA experiment in Lost in the Middle, how were the passages that lacked the answer ordered in the model's input?",2307.03172,3,the distractor documents are presented in order of decreasing relevance
 "What kind of identifiers did Lost in the Middle use for both keys and values in its synthetic retrieval task, and how long was each identifier?",2307.03172,6,All keys and values are 128-bit UUIDs.
 Which embedding model did Ragas use to compare the original question with questions generated from an answer?,2309.15217,3,the text-embedding-ada-002 model
 How often did the two human reviewers agree with each other when judging answer relevance for WikiEval?,2309.15217,4,"For answer relevance, they agreed in around 90% of the cases."

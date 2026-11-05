@@ -1,0 +1,2522 @@
+[
+  {
+    "id": "2004.04906-p6",
+    "question": "How many questions per second can DPR process when returning the top 100 passages per question?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/1000": {
+        "page_rank": 6,
+        "evidence_rank": 6
+      },
+      "hybrid/1000": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 6,
+        "evidence_rank": 7
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/500": {
+        "page_rank": 8,
+        "evidence_rank": null
+      },
+      "hybrid/500": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": 5,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": 2,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      }
+    }
+  },
+  {
+    "id": "2004.04906-p12",
+    "question": "How did the joint-training scheme in Dense Passage Retrieval affect exact match performance on the NQ development set compared with the usual retriever/reader training pipeline?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/page": {
+        "page_rank": 5,
+        "evidence_rank": 5
+      },
+      "hybrid+rerank/page": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/1000": {
+        "page_rank": 4,
+        "evidence_rank": 4
+      },
+      "hybrid/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 9,
+        "evidence_rank": 9
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/500": {
+        "page_rank": 4,
+        "evidence_rank": 4
+      },
+      "hybrid/500": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      }
+    }
+  },
+  {
+    "id": "2004.04906-p4",
+    "question": "On Natural Questions, what were DPR’s and BM25’s top-20 retrieval accuracies, respectively?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 5,
+        "evidence_rank": 5
+      },
+      "dense/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 4,
+        "evidence_rank": 4
+      },
+      "bm25/1000": {
+        "page_rank": 5,
+        "evidence_rank": 5
+      },
+      "dense/1000": {
+        "page_rank": 1,
+        "evidence_rank": 6
+      },
+      "hybrid/1000": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 6,
+        "evidence_rank": 6
+      },
+      "dense/500": {
+        "page_rank": 3,
+        "evidence_rank": 3
+      },
+      "hybrid/500": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 3,
+        "evidence_rank": 3
+      },
+      "bm25/250": {
+        "page_rank": 8,
+        "evidence_rank": 8
+      },
+      "dense/250": {
+        "page_rank": 2,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": 2,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 2,
+        "evidence_rank": null
+      }
+    }
+  },
+  {
+    "id": "2004.04906-p3",
+    "question": "How were Wikipedia articles divided into retrieval units for Dense Passage Retrieval?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 9,
+        "evidence_rank": 9
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/1000": {
+        "page_rank": 4,
+        "evidence_rank": null
+      },
+      "hybrid/1000": {
+        "page_rank": 2,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 3,
+        "evidence_rank": null
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/500": {
+        "page_rank": 2,
+        "evidence_rank": null
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 3,
+        "evidence_rank": null
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": 7,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 5,
+        "evidence_rank": null
+      }
+    }
+  },
+  {
+    "id": "2004.04906-p2",
+    "question": "What encoder architecture and token representation does Dense Passage Retrieval use for its question and passage encoders?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 9,
+        "evidence_rank": 9
+      },
+      "dense/page": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/page": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/1000": {
+        "page_rank": 3,
+        "evidence_rank": 3
+      },
+      "dense/1000": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "bm25/500": {
+        "page_rank": 3,
+        "evidence_rank": 3
+      },
+      "dense/500": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/250": {
+        "page_rank": 5,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": 5,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      }
+    }
+  },
+  {
+    "id": "2005.11401-p6",
+    "question": "How does index hot-swapping let RAG update its knowledge compared with parametric-only models like T5 or BART?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/page": {
+        "page_rank": 6,
+        "evidence_rank": 6
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 10,
+        "evidence_rank": 10
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      }
+    }
+  },
+  {
+    "id": "2005.11401-p18",
+    "question": "What happened to the generator and overall performance when retrieval collapsed in RAG’s preliminary story-generation experiments?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/page": {
+        "page_rank": 5,
+        "evidence_rank": 5
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "bm25/250": {
+        "page_rank": 3,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": 3
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      }
+    }
+  },
+  {
+    "id": "2005.11401-p2",
+    "question": "In RAG-Token, how are retrieved documents used when generating output tokens?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/500": {
+        "page_rank": 2,
+        "evidence_rank": null
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": 3
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 2,
+        "evidence_rank": 4
+      }
+    }
+  },
+  {
+    "id": "2307.03172-p8",
+    "question": "How did context-position performance differ among the 7B, 13B, and 70B Llama-2 models?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "dense/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 6,
+        "evidence_rank": 6
+      },
+      "bm25/1000": {
+        "page_rank": 3,
+        "evidence_rank": 3
+      },
+      "dense/1000": {
+        "page_rank": 4,
+        "evidence_rank": 4
+      },
+      "hybrid/1000": {
+        "page_rank": 3,
+        "evidence_rank": 3
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 3,
+        "evidence_rank": 3
+      },
+      "dense/500": {
+        "page_rank": 5,
+        "evidence_rank": 5
+      },
+      "hybrid/500": {
+        "page_rank": 3,
+        "evidence_rank": 3
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/250": {
+        "page_rank": 3,
+        "evidence_rank": 3
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      }
+    }
+  },
+  {
+    "id": "2307.03172-p9",
+    "question": "As the number of retrieved documents increases, how does language-model performance compare with retriever recall?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 5,
+        "evidence_rank": 5
+      },
+      "dense/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 4,
+        "evidence_rank": 4
+      },
+      "dense/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/500": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": 2
+      },
+      "bm25/250": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      }
+    }
+  },
+  {
+    "id": "2307.03172-p14",
+    "question": "How did GPT-4 (8K) performance vary with the position of relevant information in multi-document QA with 20 documents?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": 4,
+        "evidence_rank": 4
+      },
+      "hybrid/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/1000": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      }
+    }
+  },
+  {
+    "id": "2307.03172-p5",
+    "question": "What is the goal of the synthetic key-value retrieval task in “Lost in the Middle: How Language Models Use Long Contexts”?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/page": {
+        "page_rank": 3,
+        "evidence_rank": 3
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 6,
+        "evidence_rank": 6
+      },
+      "bm25/1000": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "dense/1000": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid/1000": {
+        "page_rank": 3,
+        "evidence_rank": 3
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "dense/500": {
+        "page_rank": 2,
+        "evidence_rank": null
+      },
+      "hybrid/500": {
+        "page_rank": 2,
+        "evidence_rank": 8
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": 2
+      },
+      "bm25/250": {
+        "page_rank": 3,
+        "evidence_rank": 8
+      },
+      "dense/250": {
+        "page_rank": 2,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": 2,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      }
+    }
+  },
+  {
+    "id": "2309.15217-p3",
+    "question": "What events did the Wikipedia pages selected for the WikiEval dataset cover?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": 6,
+        "evidence_rank": 6
+      },
+      "hybrid/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      }
+    }
+  },
+  {
+    "id": "2309.15217-p4",
+    "question": "What accuracy does Ragas achieve for faithfulness, answer relevance, and context relevance in pairwise comparisons with human annotators on WikiEval?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/1000": {
+        "page_rank": 1,
+        "evidence_rank": 2
+      },
+      "hybrid/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/500": {
+        "page_rank": 1,
+        "evidence_rank": 2
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": 2
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      }
+    }
+  },
+  {
+    "id": "2309.15217-p2",
+    "question": "In Ragas, when is an answer considered faithful to its context?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 5,
+        "evidence_rank": 5
+      },
+      "dense/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "bm25/1000": {
+        "page_rank": 3,
+        "evidence_rank": 3
+      },
+      "dense/1000": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid/1000": {
+        "page_rank": 3,
+        "evidence_rank": 7
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 3,
+        "evidence_rank": 9
+      },
+      "bm25/500": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "dense/500": {
+        "page_rank": 7,
+        "evidence_rank": null
+      },
+      "hybrid/500": {
+        "page_rank": 4,
+        "evidence_rank": 4
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 7,
+        "evidence_rank": 7
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/250": {
+        "page_rank": 4,
+        "evidence_rank": 4
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      }
+    }
+  },
+  {
+    "id": "2309.15217-p1",
+    "question": "Which frameworks does Ragas integrate with to help developers incorporate it into their standard RAG workflow?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": 8,
+        "evidence_rank": 8
+      },
+      "hybrid/page": {
+        "page_rank": 4,
+        "evidence_rank": 4
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/1000": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/1000": {
+        "page_rank": 6,
+        "evidence_rank": 6
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/500": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      }
+    }
+  },
+  {
+    "id": "2310.11511-p17",
+    "question": "In Self-RAG’s generator-data creation procedure, what is used as the query to retrieve passages when the critic predicts Retrieve = Yes?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": 9,
+        "evidence_rank": 9
+      },
+      "hybrid/page": {
+        "page_rank": 3,
+        "evidence_rank": 3
+      },
+      "hybrid+rerank/page": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/1000": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/1000": {
+        "page_rank": 4,
+        "evidence_rank": 4
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 4,
+        "evidence_rank": 4
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/500": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 4,
+        "evidence_rank": 4
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      }
+    }
+  },
+  {
+    "id": "2310.11511-p16",
+    "question": "How does Self-RAG define usefulness (ISUSE)?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": 3,
+        "evidence_rank": 3
+      },
+      "hybrid/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "bm25/1000": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "dense/1000": {
+        "page_rank": 7,
+        "evidence_rank": null
+      },
+      "hybrid/1000": {
+        "page_rank": 4,
+        "evidence_rank": 4
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 9,
+        "evidence_rank": 9
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/500": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/500": {
+        "page_rank": 2,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 6,
+        "evidence_rank": null
+      },
+      "bm25/250": {
+        "page_rank": 2,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 2,
+        "evidence_rank": null
+      }
+    }
+  },
+  {
+    "id": "2310.11511-p8",
+    "question": "In SELF-RAG, what effect does increasing the inference-time weight for the ISSUP critique have on citation precision on ASQA?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": 5,
+        "evidence_rank": 5
+      },
+      "hybrid/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/1000": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": 4
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": 2
+      }
+    }
+  },
+  {
+    "id": "2004.04906-p1",
+    "question": "What Top-5 retrieval accuracy did Dense Passage Retriever (DPR) achieve compared with BM25?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/page": {
+        "page_rank": 5,
+        "evidence_rank": 5
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 3,
+        "evidence_rank": 3
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/1000": {
+        "page_rank": 2,
+        "evidence_rank": null
+      },
+      "hybrid/1000": {
+        "page_rank": 2,
+        "evidence_rank": 5
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/500": {
+        "page_rank": 5,
+        "evidence_rank": null
+      },
+      "hybrid/500": {
+        "page_rank": 5,
+        "evidence_rank": 5
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/250": {
+        "page_rank": 2,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": 4,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": 5,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 7,
+        "evidence_rank": null
+      }
+    }
+  },
+  {
+    "id": "2005.11401-p8",
+    "question": "What two capabilities does RAG’s raw-text memory provide, and how can its memory be updated?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/page": {
+        "page_rank": 4,
+        "evidence_rank": 4
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 3,
+        "evidence_rank": 3
+      },
+      "bm25/1000": {
+        "page_rank": 4,
+        "evidence_rank": null
+      },
+      "dense/1000": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/1000": {
+        "page_rank": 7,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "bm25/500": {
+        "page_rank": 4,
+        "evidence_rank": null
+      },
+      "dense/500": {
+        "page_rank": 10,
+        "evidence_rank": null
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 3,
+        "evidence_rank": null
+      },
+      "bm25/250": {
+        "page_rank": 2,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": 4,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": null,
+        "evidence_rank": null
+      }
+    }
+  },
+  {
+    "id": "2005.11401-p7",
+    "question": "How accurately does the NQ RAG model identify world leaders when it uses an index from the wrong year?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": 5,
+        "evidence_rank": 5
+      },
+      "hybrid/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      }
+    }
+  },
+  {
+    "id": "2005.11401-p9",
+    "question": "What mitigation does the RAG discussion suggest for risks such as misleading content and automated spam or phishing?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": 2
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": 2
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      }
+    }
+  },
+  {
+    "id": "2005.11401-p5",
+    "question": "What accuracy does Retrieval-Augmented Generation (RAG) achieve on Natural Questions when the correct answer is absent from all retrieved documents?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 6,
+        "evidence_rank": 6
+      },
+      "dense/page": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/page": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 4,
+        "evidence_rank": 4
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/1000": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid/1000": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "bm25/500": {
+        "page_rank": 10,
+        "evidence_rank": null
+      },
+      "dense/500": {
+        "page_rank": 4,
+        "evidence_rank": null
+      },
+      "hybrid/500": {
+        "page_rank": 7,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "bm25/250": {
+        "page_rank": 3,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": 6,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      }
+    }
+  },
+  {
+    "id": "2005.11401-p16",
+    "question": "What hardware configuration was used to train the RAG models and BART baselines?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 4,
+        "evidence_rank": 4
+      },
+      "dense/page": {
+        "page_rank": 8,
+        "evidence_rank": 8
+      },
+      "hybrid/page": {
+        "page_rank": 3,
+        "evidence_rank": 3
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/1000": {
+        "page_rank": 3,
+        "evidence_rank": 3
+      },
+      "dense/1000": {
+        "page_rank": 6,
+        "evidence_rank": null
+      },
+      "hybrid/1000": {
+        "page_rank": 5,
+        "evidence_rank": 5
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 3,
+        "evidence_rank": 3
+      },
+      "dense/500": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/250": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      }
+    }
+  },
+  {
+    "id": "2307.03172-p3",
+    "question": "What decoding strategy does the Lost in the Middle study use when generating model outputs?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/page": {
+        "page_rank": 4,
+        "evidence_rank": 4
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/1000": {
+        "page_rank": 5,
+        "evidence_rank": 5
+      },
+      "hybrid/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/500": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      }
+    }
+  },
+  {
+    "id": "2307.03172-p17",
+    "question": "In the multi-document QA task with 20 retrieved documents, what was GPT-3.5-Turbo’s performance when the answer document was at index 0 (the start of the context)?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 3
+      },
+      "dense/1000": {
+        "page_rank": 1,
+        "evidence_rank": 6
+      },
+      "hybrid/1000": {
+        "page_rank": 1,
+        "evidence_rank": 3
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 7
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": 8
+      },
+      "dense/500": {
+        "page_rank": 1,
+        "evidence_rank": 8
+      },
+      "hybrid/500": {
+        "page_rank": 2,
+        "evidence_rank": 7
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 2,
+        "evidence_rank": null
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": 3,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 2,
+        "evidence_rank": null
+      }
+    }
+  },
+  {
+    "id": "2307.03172-p2",
+    "question": "In open-domain question answering, how much did increasing the number of retrieved documents from 20 to 50 improve performance for GPT-3.5-Turbo and Claude-1.3?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": 4,
+        "evidence_rank": 4
+      },
+      "hybrid/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 6,
+        "evidence_rank": 6
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/1000": {
+        "page_rank": 9,
+        "evidence_rank": null
+      },
+      "hybrid/1000": {
+        "page_rank": 2,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/500": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/500": {
+        "page_rank": 4,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": 3,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 7,
+        "evidence_rank": null
+      }
+    }
+  },
+  {
+    "id": "2307.03172-p16",
+    "question": "Why do Claude-1.3 and GPT-3.5-Turbo have the same token counts in the reported experimental settings?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      }
+    }
+  },
+  {
+    "id": "2307.03172-p6",
+    "question": "How robust was Flan-UL2 to the position of relevant information when evaluated within its 2048-token training-time context window?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      }
+    }
+  },
+  {
+    "id": "2307.03172-p7",
+    "question": "How did query-aware contextualization affect GPT-3.5-Turbo (16K)’s performance on key-value retrieval with 300 key-value pairs?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/page": {
+        "page_rank": 6,
+        "evidence_rank": 6
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": 2
+      },
+      "dense/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": 2
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      }
+    }
+  },
+  {
+    "id": "2310.11511-p5",
+    "question": "How can SELF-RAG customize its behavior at inference time using critique-token scores?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 3
+      },
+      "dense/1000": {
+        "page_rank": 3,
+        "evidence_rank": 3
+      },
+      "hybrid/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": 3
+      },
+      "dense/500": {
+        "page_rank": 3,
+        "evidence_rank": null
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": 5
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 2,
+        "evidence_rank": 6
+      },
+      "bm25/250": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": 4
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 1,
+        "evidence_rank": 9
+      }
+    }
+  },
+  {
+    "id": "2310.11511-p4",
+    "question": "In SELF-RAG, what does the generator model learn to predict during training?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 4,
+        "evidence_rank": 4
+      },
+      "dense/page": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/page": {
+        "page_rank": 8,
+        "evidence_rank": 8
+      },
+      "hybrid+rerank/page": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "bm25/1000": {
+        "page_rank": 8,
+        "evidence_rank": 8
+      },
+      "dense/1000": {
+        "page_rank": 1,
+        "evidence_rank": 6
+      },
+      "hybrid/1000": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 5,
+        "evidence_rank": 5
+      },
+      "bm25/500": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "dense/500": {
+        "page_rank": 2,
+        "evidence_rank": null
+      },
+      "hybrid/500": {
+        "page_rank": 3,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 5,
+        "evidence_rank": null
+      },
+      "bm25/250": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": 10,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 6,
+        "evidence_rank": null
+      }
+    }
+  },
+  {
+    "id": "2310.11511-p18",
+    "question": "What hardware and training duration were used to train the Self-RAG models?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "dense/page": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/page": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/page": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "bm25/1000": {
+        "page_rank": 5,
+        "evidence_rank": 5
+      },
+      "dense/1000": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/1000": {
+        "page_rank": 10,
+        "evidence_rank": 10
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 10,
+        "evidence_rank": 10
+      },
+      "bm25/500": {
+        "page_rank": 9,
+        "evidence_rank": null
+      },
+      "dense/500": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/500": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 10,
+        "evidence_rank": null
+      },
+      "bm25/250": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": null,
+        "evidence_rank": null
+      }
+    }
+  },
+  {
+    "id": "2310.11511-p3",
+    "question": "What does the ISSUP reflection token assess in Self-RAG?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "dense/page": {
+        "page_rank": 6,
+        "evidence_rank": 6
+      },
+      "hybrid/page": {
+        "page_rank": 2,
+        "evidence_rank": 2
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 6,
+        "evidence_rank": 6
+      },
+      "bm25/1000": {
+        "page_rank": 4,
+        "evidence_rank": null
+      },
+      "dense/1000": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/1000": {
+        "page_rank": 9,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 4,
+        "evidence_rank": null
+      },
+      "bm25/500": {
+        "page_rank": 2,
+        "evidence_rank": null
+      },
+      "dense/500": {
+        "page_rank": 5,
+        "evidence_rank": null
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 8,
+        "evidence_rank": null
+      },
+      "bm25/250": {
+        "page_rank": 5,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": null,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": null,
+        "evidence_rank": null
+      }
+    }
+  },
+  {
+    "id": "2310.11511-p9",
+    "question": "How did increasing SELF-RAG’s fine-tuning data size affect performance across PopQA, PubHealth, and ASQA?",
+    "setups": {
+      "bm25/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/page": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "hybrid+rerank/1000": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "bm25/500": {
+        "page_rank": 1,
+        "evidence_rank": 1
+      },
+      "dense/500": {
+        "page_rank": 1,
+        "evidence_rank": 2
+      },
+      "hybrid/500": {
+        "page_rank": 1,
+        "evidence_rank": 2
+      },
+      "hybrid+rerank/500": {
+        "page_rank": 1,
+        "evidence_rank": 2
+      },
+      "bm25/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "dense/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid/250": {
+        "page_rank": 1,
+        "evidence_rank": null
+      },
+      "hybrid+rerank/250": {
+        "page_rank": 2,
+        "evidence_rank": null
+      }
+    }
+  }
+]

@@ -35,12 +35,18 @@ def test_markdown_table_is_sorted_by_mrr():
     assert table.index("| hybrid |") < table.index("| bm25 |")
 
 
-def test_evidence_counts_only_passages_that_hold_the_quote():
+def test_evidence_needs_the_whole_quote_word_for_word():
     from research_rag.evaluate import holds_evidence
-    assert holds_evidence("DPR uses two independent BERT encoders and the CLS token.", "two independent BERT encoders")
-    assert not holds_evidence("Index hot-swapping updates knowledge.", "two independent BERT encoders")
-    # a small chunk lying wholly inside a long quote still counts
-    assert holds_evidence("two independent BERT", "DPR uses two independent BERT encoders and the CLS token")
+    quote = "the exact match score on SQuAD v1.1 drops from above 80% to less than 40%"
+    assert holds_evidence("As shown, The exact match score on SQuAD v1.1\ndrops from above 80% to less than 40%.", quote)
+    assert not holds_evidence("the score", quote)                                          # generic words only
+    assert not holds_evidence("the score improves from above 80% to more than 90%", quote)  # contradicts it
+    assert not holds_evidence("Index hot-swapping updates knowledge.", quote)
+
+
+def test_evidence_matching_normalises_line_breaks_and_ligatures():
+    from research_rag.evaluate import holds_evidence
+    assert holds_evidence("we use the unﬁl-\ntered TriviaQA version", "the unfiltered TriviaQA version")
 
 
 def test_grid_reports_ndcg_evidence_and_intervals():
