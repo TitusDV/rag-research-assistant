@@ -33,3 +33,25 @@ def test_markdown_table_is_sorted_by_mrr():
             {"retriever": "hybrid", "chunk": 500, "chunks": 9, "hit@1": .6, "hit@3": .7, "hit@5": .8, "mrr@10": .65}]
     table = markdown_table(rows, n_questions=2)
     assert table.index("| hybrid |") < table.index("| bm25 |")
+
+
+def test_evidence_counts_only_passages_that_hold_the_quote():
+    from research_rag.evaluate import holds_evidence
+    assert holds_evidence("DPR uses two independent BERT encoders and the CLS token.", "two independent BERT encoders")
+    assert not holds_evidence("Index hot-swapping updates knowledge.", "two independent BERT encoders")
+    # a small chunk lying wholly inside a long quote still counts
+    assert holds_evidence("two independent BERT", "DPR uses two independent BERT encoders and the CLS token")
+
+
+def test_grid_reports_ndcg_evidence_and_intervals():
+    qs = [dict(q, evidence=e) for q, e in zip(QUESTIONS, ["two BERT encoders and the CLS token", "hot-swapping lets RAG update"])]
+    rows, ranks = run_grid(PAGES, qs, EMB, chunk_sizes=[None], kinds=["bm25"])
+    r = rows[0]
+    assert r["ndcg@10"] == 1.0 and r["evidence@5"] == 1.0
+    assert r["hit@5_ci"][0] <= r["hit@5"] <= r["hit@5_ci"][1]
+
+
+def test_comparison_says_when_setups_cannot_be_told_apart():
+    from research_rag.evaluate import compare_to
+    text = compare_to({"a/500": [1, 1, None, 2], "b/500": [1, 2, None, 1]}, "a/500")
+    assert "| b/500 |" in text and text.rstrip().endswith("| no |")

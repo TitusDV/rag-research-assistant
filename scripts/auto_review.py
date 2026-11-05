@@ -41,7 +41,8 @@ def main() -> None:
     if args.check:
         result = check_against_humans(rows, judge, PAPERS, abstracts)
         lines = [f"# Judge check ({model})", "",
-                 f"Agreement with human review: {result['agreement']:.0%} on {result['n']} questions.", "",
+                 f"Agreement with human review: {result['agreement']:.0%} on {result['n']} questions "
+                 f"(Cohen's kappa {result['kappa']:.2f}; 1 is perfect, 0 is chance level).", "",
                  "| | Human approved | Human rejected |", "|---|---|---|",
                  f"| Judge approved | {result['both_approve']} | {result['judge_only_approves']} |",
                  f"| Judge rejected | {result['judge_only_rejects']} | {result['both_reject']} |", "",

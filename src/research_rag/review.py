@@ -8,6 +8,8 @@ from typing import Callable, Literal
 from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel, Field
 
+from .metrics import cohen_kappa
+
 Reason = Literal[
     "ok", "citation", "layout", "example_trivia", "headline", "duplicate", "vague", "beyond_evidence"
 ]
@@ -97,4 +99,6 @@ def check_against_humans(rows: list[dict], judge: Judge, titles: dict, abstracts
             disagreements.append({"id": row["id"], "question": row["question"], "human": row["status"],
                                   "judge_reason": v.reason, "judge_explanation": v.explanation})
     agreement = (counts["both_approve"] + counts["both_reject"]) / len(human)
-    return {"n": len(human), "agreement": agreement, **counts, "disagreements": disagreements}
+    kappa = cohen_kappa(counts["both_approve"], counts["judge_only_approves"],
+                        counts["judge_only_rejects"], counts["both_reject"])
+    return {"n": len(human), "agreement": agreement, "kappa": kappa, **counts, "disagreements": disagreements}
