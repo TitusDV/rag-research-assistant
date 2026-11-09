@@ -107,11 +107,11 @@ pip install -r requirements.txt
 python scripts/download_papers.py
 python -m pytest
 
-cp .env.example .env                    # set MODEL and OPENAI_API_KEY
-python scripts/make_questions.py        # write questions from sampled pages
+cp .env.example .env                    
+python scripts/make_questions.py        # wmake questions
 python scripts/review_questions.py      # review by hand
-python scripts/auto_review.py --check   # compare the judge with your own reviews
-python scripts/auto_review.py           # let the judge review the rest
+python scripts/auto_review.py --check   
+python scripts/auto_review.py          
 python scripts/run_eval.py              # score every retriever and chunk size
 python scripts/run_eval.py --rerank     # ...and hybrid reranked by a cross-encoder
 python scripts/validate_heldout.py      # check the held-out questions' papers, pages and quotes
@@ -119,7 +119,7 @@ python scripts/run_eval.py --heldout    # score the held-out questions
 python scripts/run_answer_eval.py       # answer the held-out questions, save passages and a review sheet
 python scripts/score_answers.py         # score the filled-in review sheet
 python scripts/check_injection.py       # try hidden instructions inside passages against the model
-python app.py                           # ask questions in the browser
+python app.py                           
 ```
 
 ## Code
