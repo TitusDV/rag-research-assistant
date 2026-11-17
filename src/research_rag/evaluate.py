@@ -16,19 +16,18 @@ TOP_K = 10  # every retriever is cut to its top 10 results, so all are judged on
 
 
 def _normalise(text: str) -> str:
-    """The same normalisation used when a question's quote was checked against its page, plus NFKC,
-    which turns PDF ligatures like "ﬁ" into "fi": join words hyphenated across lines, collapse
-    whitespace, lower-case."""
+    """Lower-case, collapse whitespace and rejoin words split across lines, as the quote check in
+    questions.py does, and also turn PDF ligatures like "ﬁ" back into "fi" (NFKC)."""
     text = unicodedata.normalize("NFKC", text)
     text = re.sub(r"-\s*\n\s*", "", text)
     return re.sub(r"\s+", " ", text).strip().lower()
 
 
 def holds_evidence(passage: str, evidence: str) -> bool:
-    """True if the whole evidence quote appears word for word in the passage, after normalising.
+    """True if the whole quote appears word for word in the passage, after normalising.
 
-    Deliberately strict: a passage that shares only some of the quote's words doesn't count. A quote split across chunks is missed. This measures reference-quote
-    containment, not semantic support or answer correctness.
+    Strict on purpose: sharing some of the words isn't enough. A quote split across two chunks is missed,
+    and a match only shows the right paragraph was found, not that the passage supports a correct answer.
     """
     quote = _normalise(evidence)
     if not quote:
