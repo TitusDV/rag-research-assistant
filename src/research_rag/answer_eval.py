@@ -1,10 +1,10 @@
-"""End-to-end answer evaluation on held-out questions: correctness, citation support and abstention.
+"""Checks the answers on the held-out questions, not just retrieval.
 
-Retrieval metrics say whether the right passage was found. These say whether the user got a correct,
-verifiable answer, and whether the assistant declined questions the papers can't answer.
+Retrieval scores only say whether the right passage came back. This checks whether the answer was right,
+whether its citations back it up, and whether it declined questions the papers can't answer.
 
-Flow: run_answer_eval.py saves an audit record per question (passages, raw model output, final answer) and a
-review sheet. A person fills in the verdict columns. score_answers.py turns the sheet into the results table.
+run_answer_eval.py saves what the model saw and said for each question, plus a review sheet. The verdict
+columns are filled in by hand, then score_answers.py turns the sheet into the results table.
 """
 import csv
 import json
@@ -31,7 +31,7 @@ def _yes(value: str) -> bool:
 
 
 def load_questions(path: Path) -> list[dict]:
-    """Read CSV questions with one-based PDF pages and optional answer labels."""
+    """Read the questions CSV. Pages are numbered as in a PDF viewer, starting at 1."""
     out = []
     with Path(path).open(encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
@@ -72,7 +72,7 @@ def load_questions(path: Path) -> list[dict]:
 
 
 def validate_questions(questions: list[dict], pages: list, require_facts: bool = False) -> None:
-    """Check labels and supplied quotes before model calls or retrieval scoring."""
+    """Check every question's paper, page and quote before spending any model calls."""
     page_text = {(p.metadata["paper"], p.metadata["page"] + 1): p.page_content for p in pages}
     errors = []
     for q in questions:
@@ -210,7 +210,7 @@ def markdown_report(s: dict, config: dict) -> str:
 
     corr = frac(s["correct"], s["answerable"])
     if s["correct_ci"]:
-        corr += f", empirical 95% bootstrap interval {s['correct_ci'][0]:.0%} to {s['correct_ci'][1]:.0%}"
+        corr += f", 95% interval {s['correct_ci'][0]:.0%} to {s['correct_ci'][1]:.0%}"
     lines = ["# Answer quality on held-out questions", "",
              "Configuration " + ", ".join(f"{k} {v}" for k, v in config.items()), "",
              "| Measure | Result | Denominator |", "|---|---|---|",
@@ -220,9 +220,9 @@ def markdown_report(s: dict, config: dict) -> str:
              f"| Citation support | {frac(s['claims_supported'], s['claims_total'])} | all reviewed factual claims in returned answers |",
              f"| Correct abstention | {frac(s['declined'], s['unanswerable'])} | all attempted unanswerable questions, including run errors |",
              f"| Run errors | {s['errors']} | {s['answerable_errors']} answerable and {s['unanswerable_errors']} unanswerable |", "",
-             "Empirical intervals resample these questions. An all-success or all-failure sample yields a zero-width interval and does not establish certainty about future questions.", "",
+             "The interval comes from resampling these questions. If they are all right or all wrong it has zero width, which says nothing certain about new questions.", "",
              "## Review of failed answers", "",
-             f"- Retrieved passages lacked enough information according to the reviewer: {len(s['retrieval_miss'])} ({', '.join(s['retrieval_miss'])})",
-             f"- Retrieved passages had enough information but the final answer failed: {len(s['generation_miss'])} ({', '.join(s['generation_miss'])})",
-             f"- Evidence sufficiency unresolved: {len(s['unknown_cause'])} ({', '.join(s['unknown_cause'])})"]
+             f"- The information wasn't in the passages (retrieval problem): {len(s['retrieval_miss'])} ({', '.join(s['retrieval_miss'])})",
+             f"- The information was in the passages but the answer still failed (generation problem): {len(s['generation_miss'])} ({', '.join(s['generation_miss'])})",
+             f"- Not sure which: {len(s['unknown_cause'])} ({', '.join(s['unknown_cause'])})"]
     return "\n".join(lines) + "\n"
