@@ -94,7 +94,7 @@ Ten AI-assisted questions, two per paper, each evidence quote checked against th
 | Hybrid + rerank, 500 | 0.80 | 10/10 | 0.80 | 0.900 (0.75-1.00) |
 | BM25, 1000 | 0.30 | 8/10 | 0.70 | 0.470 (0.25-0.70) |
 
-- BM25 on 1000 characters, joint best on the original questions, ranked clearly worse than the app's setup here (MRR difference -0.28, interval -0.53 to -0.05). Its relative performance changed between the two question sets. Wording overlap between generated questions and their pages is one possible explanation, but both sets were AI-assisted and differ in content, so this doesn't prove the cause.
+- BM25 on 1000 characters was joint best on the original questions but clearly worse than the app's setup here (MRR difference -0.28, interval -0.53 to -0.05). My guess is the wording overlap between generated questions and their pages, but both sets were AI-assisted and cover different content, so I can't prove that.
 - The reranker, which didn't help on the original questions, found the right page for all ten here. The difference from the app's setup could still be chance (both intervals start at 0), and the two sets point different ways, so it stays out of the demo until a bigger held-out set settles it.
 - The app's setup found the right page in the top 5 for 8 of 10, against 34 of 36 on the original questions. Some drop is expected on questions that played no part in choosing it.
 
