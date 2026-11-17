@@ -1,4 +1,4 @@
-"""Run the assistant, exactly as the app does, on the held-out questions and save everything needed to review it.
+"""Answer the held-out questions the same way the app does, and save what's needed to review each answer.
 
   python scripts/run_answer_eval.py           writes eval/answers_heldout.jsonl and eval/answer_review.csv
   python scripts/run_answer_eval.py --force   also overwrite an existing review sheet (loses your verdicts)
@@ -50,7 +50,8 @@ def main() -> None:
     review_path = ROOT / "eval" / "answer_review.csv"
     output_paths = [review_path, ROOT / "eval" / "answers_heldout.jsonl", ROOT / "eval" / "answer_config.json"]
     if any(p.exists() for p in output_paths) and not args.force:
-        sys.exit("Answer evaluation output already exists. Archive the three output files before a new run, or use --force to overwrite them.")
+        sys.exit("There are results from an earlier run. Move eval/answer_review.csv, answers_heldout.jsonl and "
+                 "answer_config.json somewhere safe first, or use --force to overwrite them.")
 
     load_dotenv(ROOT / ".env")
     questions = load_questions(args.questions)

@@ -19,11 +19,11 @@ def main() -> None:
     config = json.loads(config_path.read_text(encoding="utf-8")) if config_path.exists() else {}
     expected = config.get("question_ids")
     if expected is not None and [r["id"] for r in rows] != expected:
-        sys.exit("Review IDs do not match this run. Restore missing rows and the original order.")
+        sys.exit("The review sheet doesn't match this run: rows are missing or have been reordered.")
     try:
         summary = summarise(rows)
     except ValueError as error:
-        sys.exit(f"Review incomplete or invalid: {error}")
+        sys.exit(f"Can't score the review sheet yet: {error}")
     report_config = {k: v for k, v in config.items() if k != "question_ids"}
     report = markdown_report(summary, report_config)
     (ROOT / "eval" / "answer_results.md").write_text(report, encoding="utf-8")
