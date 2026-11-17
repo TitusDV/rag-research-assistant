@@ -27,10 +27,12 @@ Each retriever (BM25, dense embeddings, and a hybrid of the two) was run on whol
 ### The measures
 
 - **Hit@k**: share of questions where a passage from the right page is in the top k results. Hit@6 matches the app, which gives the model six passages.
-- **Evidence@5 and Evidence@6**: stricter. The passage must be from the right page and contain the question's whole evidence quote word for word, after normalising case, spacing, line-break hyphens and PDF ligatures, and the match must start and end on whole words, so "80% accuracy" doesn't match inside "180% accuracy". A passage from the right page but the wrong paragraph doesn't count. It undercounts when a chunk boundary splits the quote, which happens more often with small chunks: the quotes are up to 30 words, close to the length of a 250-character chunk. A matching quote shows the right paragraph was found, not that the passage fully supports an answer.
+- **Evidence@5 and Evidence@6**: The passage has to be from the right page and contain the question's whole evidence quote word for word. Case, spacing, line-break hyphens and PDF ligatures are ignored, and the match has to start and end on whole words, so "80% accuracy" doesn't match inside "180% accuracy". A passage from the right page but the wrong paragraph doesn't count.
 
-  An earlier version matched on shared words and could credit a passage containing only "the score". It was replaced after a review, and every Evidence figure here comes from the corrected rule. The stricter check also caught two quotes that ended where the PDF text has a footnote number stuck to the last word ("relevance.4" and "20225"). I trimmed those two quotes so they end before the footnote; the questions and pages are unchanged.
-- **MRR@10**: on average, how high the first right passage ranks (1 means always first).
+  It undercounts when a chunk boundary splits the quote. That happens more with small chunks, because the quotes are up to 30 words, close to the length of a 250-character chunk. And a matching quote only shows the right paragraph was found, not that the passage fully supports an answer.
+
+  An earlier version matched on shared words and could credit a passage containing only "the score". It was replaced after a review, and every Evidence figure here comes from the corrected rule. The stricter check also caught two quotes that ended where the PDF text has a footnote number attached to the last word ("relevance.4" and "20225"). I trimmed those two quotes so they end before the footnote; the questions and pages are unchanged.
+- **MRR@10**: on average, how high the first correct passage ranks (1 means always first).
 - **nDCG@10**: like MRR, but a passage at rank 2 or 3 still earns most of the credit. That fits the app, which reads six passages.
 - **95% intervals**: each score is shown with a bootstrap interval, resampling the questions. With 36 questions they are wide, which is the honest picture.
 - **Paired comparison**: every setup is compared with the one the app uses, question by question. If the interval for the difference includes 0, the data can't tell the two apart.
