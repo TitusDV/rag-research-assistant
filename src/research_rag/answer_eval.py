@@ -27,7 +27,7 @@ def _yes(value: str) -> bool:
         return True
     if text in ("n", "no", "false", "0"):
         return False
-    raise ValueError(f"Expected yes or no, received {value!r}")
+    raise ValueError(f"needs yes or no, got {value!r}")
 
 
 def load_questions(path: Path) -> list[dict]:
@@ -37,13 +37,13 @@ def load_questions(path: Path) -> list[dict]:
         reader = csv.DictReader(f)
         headers = reader.fieldnames or []
         if "question" not in headers or len(headers) != len(set(headers)):
-            raise ValueError("CSV needs a question header and unique column names.")
+            raise ValueError("the CSV needs a 'question' column and no repeated column names")
         for row_number, row in enumerate(reader, start=2):
             if None in row:
-                raise ValueError(f"CSV row {row_number}: extra fields. Check commas and quoting.")
+                raise ValueError(f"CSV row {row_number}: too many fields, probably a stray comma or missing quotes")
             if not (row.get("question") or "").strip():
                 if any((v or "").strip() for v in row.values()):
-                    raise ValueError(f"CSV row {row_number}: question is blank.")
+                    raise ValueError(f"CSV row {row_number}: the question is empty")
                 continue
             try:
                 answerable = _yes(row.get("answerable") or "yes")
@@ -51,10 +51,10 @@ def load_questions(path: Path) -> list[dict]:
                 page = (row.get("page") or "").strip()
                 if answerable:
                     if not paper or not page:
-                        raise ValueError("answerable questions require paper and page.")
+                        raise ValueError("an answerable question needs a paper and a page")
                     page_number = int(page)
                     if page_number < 1:
-                        raise ValueError("page must be a positive PDF viewer page number.")
+                        raise ValueError("page has to be 1 or more (PDF viewer numbering)")
                 else:
                     page_number = None
             except ValueError as error:
@@ -80,11 +80,11 @@ def validate_questions(questions: list[dict], pages: list, require_facts: bool =
             continue
         key = (q["paper"], q["page"])
         if key not in page_text:
-            errors.append(f"{q['id']}: paper or PDF page does not exist.")
+            errors.append(f"{q['id']}: that paper or page does not exist")
         elif q["evidence"] and not holds_evidence(page_text[key], q["evidence"]):
-            errors.append(f"{q['id']}: evidence quote does not match the labelled page.")
+            errors.append(f"{q['id']}: the quote isn't on that page")
         if require_facts and not q["required_facts"]:
-            errors.append(f"{q['id']}: required_facts is empty.")
+            errors.append(f"{q['id']}: required_facts is empty")
     if errors:
         raise ValueError("\n".join(errors))
 
