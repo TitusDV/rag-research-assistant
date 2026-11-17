@@ -61,7 +61,7 @@ def test_claim_review_must_be_complete_and_consistent(total, supported):
         summarise([review(total=total, supported=supported)])
 
 
-def test_blank_correctness_cannot_be_published():
+def test_blank_correct_column_is_rejected():
     with pytest.raises(ValueError, match="yes or no"):
         summarise([review(correct="")])
 
