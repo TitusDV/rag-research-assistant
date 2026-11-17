@@ -140,16 +140,16 @@ def _claim_counts(row: dict) -> tuple[int, int]:
         total = int(str(row["claims_total"]).strip())
         supported = int(str(row["claims_supported"]).strip())
     except (ValueError, KeyError) as error:
-        raise ValueError("claims_total and claims_supported need explicit whole numbers.") from error
+        raise ValueError("claims_total and claims_supported need whole numbers") from error
     if not 0 <= supported <= total:
-        raise ValueError("Claim counts must satisfy 0 <= claims_supported <= claims_total.")
+        raise ValueError("claims_supported can't be negative or more than claims_total")
     return total, supported
 
 
 def summarise(rows: list[dict]) -> dict:
-    """Score completed reviews. Every attempted question remains in its denominator."""
+    """Score the filled-in review sheet. Run errors still count as attempts, so a timeout can't make the scores look better."""
     if not rows:
-        raise ValueError("The review sheet contains no questions.")
+        raise ValueError("the review sheet is empty")
     seen = set()
     counts = dict(answerable=0, correct=0, wrong_abstentions=0, answered_wrong=0,
                   unanswerable=0, declined=0, claims_total=0, claims_supported=0,
@@ -158,13 +158,13 @@ def summarise(rows: list[dict]) -> dict:
     for row in rows:
         identifier = row["id"].strip()
         if not identifier or identifier in seen:
-            raise ValueError(f"Blank or duplicate review ID: {identifier!r}")
+            raise ValueError(f"review ID is blank or a duplicate: {identifier!r}")
         seen.add(identifier)
         try:
             answerable = _yes(row["answerable"])
             status = row["final_answered"].strip().lower()
             if status not in ("yes", "no", "error"):
-                raise ValueError("final_answered must be yes, no or ERROR.")
+                raise ValueError("final_answered has to be yes, no or ERROR")
             counts["answerable" if answerable else "unanswerable"] += 1
             if status == "error":
                 counts["errors"] += 1
@@ -199,7 +199,7 @@ def summarise(rows: list[dict]) -> dict:
     counts.update(
         correct_ci=bootstrap_ci([1.0] * hits + [0.0] * (n - hits)) if n else None,
         retrieval_miss=retrieval_miss, generation_miss=generation_miss,
-        unknown_cause=unknown_cause, unreviewed=[],
+        unknown_cause=unknown_cause,
     )
     return counts
 
