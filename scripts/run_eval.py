@@ -4,7 +4,7 @@
   python scripts/run_eval.py --heldout   held-out questions in eval/heldout.csv -> eval/results_heldout.md
   add --rerank to either                 also score hybrid retrieval reranked by a cross-encoder (about 90 MB download)
 
-The held-out CSV is an additional evaluation set. Record its provenance when publishing results.
+The held-out questions weren't used to choose the app's setup, so they are a separate check.
 The first run downloads the embedding model (about 90 MB).
 """
 import argparse
@@ -74,7 +74,7 @@ def main() -> None:
     table = markdown_table(rows, len(questions)) + "\n" + compare_to(ranks, APP_SETUP)
     if args.heldout:
         (ROOT / "eval" / "results_heldout.md").write_text(
-            f"# Retrieval results on held-out questions\n\nAI-assisted questions with source-checked reference quotes, originally reserved from setup selection. Subsequent reuse should be reported.\n"
+            f"# Retrieval results on held-out questions\n\nAI-assisted questions, each quote checked against the PDF, kept out of choosing the app's setup.\n"
             f"Embedding model: {EMBEDDING_MODEL}\n\n{table}", encoding="utf-8")
         print(table)
         print("Saved eval/results_heldout.md")

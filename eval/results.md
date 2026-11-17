@@ -4,7 +4,7 @@ Embedding model: sentence-transformers/all-MiniLM-L6-v2
 
 Questions: 36. Results are cut to the top 10. Brackets: 95% bootstrap interval.
 
-Evidence@k is the fraction with the complete normalised reference quote in one top-k passage on the labelled page. Normalisation uses NFKC, line-end dehyphenation, whitespace and case. Matches respect word and number boundaries. Split quotes and equivalent wording can be missed.
+Evidence@k: share of questions where one top-k passage from the right page contains the whole quote word for word (ignoring case, spacing, line-break hyphens and PDF ligatures, and matching on whole words). A quote split across chunks, or the same fact in other words, is missed.
 
 | Retriever | Chunk size | Chunks | Hit@1 | Hit@3 | Hit@5 | Hit@6 | Evidence@5 | Evidence@6 | MRR@10 | nDCG@10 | ms/question |
 |---|---|---|---|---|---|---|---|---|---|---|---|
