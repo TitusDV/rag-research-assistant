@@ -17,15 +17,15 @@ except ImportError:
     def on_gpu(fn):
         return fn
 
-import gradio as gr  # noqa: E402
-from dotenv import load_dotenv  # noqa: E402
-from langchain_huggingface import HuggingFaceEmbeddings  # noqa: E402
+import gradio as gr  
+from dotenv import load_dotenv  
+from langchain_huggingface import HuggingFaceEmbeddings 
 
-from research_rag.answer import Assistant, make_answerer  # noqa: E402
-from research_rag.chunking import load_papers  # noqa: E402
-from research_rag.llm import build_chat_model  # noqa: E402
-from research_rag.papers import download  # noqa: E402
-from research_rag.ui import DailyLimit, render_empty, render_message, render_papers, render_result  # noqa: E402
+from research_rag.answer import Assistant, make_answerer  
+from research_rag.chunking import load_papers  
+from research_rag.llm import build_chat_model  
+from research_rag.papers import download  
+from research_rag.ui import DailyLimit, render_empty, render_message, render_papers, render_result  
 
 warnings.filterwarnings("ignore", message="Pydantic serializer warnings")
 load_dotenv(ROOT / ".env")
@@ -41,7 +41,7 @@ assistant = Assistant(
     HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2", model_kwargs={"device": "cpu"}),
     make_answerer(build_chat_model(os.getenv("MODEL", "llama3"))),
 )
-limit = DailyLimit(int(os.getenv("DAILY_LIMIT", "100")))
+limit = DailyLimit(int(os.getenv("DAILY_LIMIT") or "100")) 
 
 EXAMPLES = [
     "What happens when the answer sits in the middle of a long context?",
@@ -98,6 +98,23 @@ THEME = gr.themes.Base(
 
 CSS = (ROOT / "app.css").read_text(encoding="utf-8")
 
+# Opened with ?embed=1 (as on my portfolio page), the app drops its header and side panel, shows the answer
+# right under the question, and tells the page around it how tall it is, so the frame can grow to fit.
+EMBED_JS = """
+() => {
+  if (new URLSearchParams(location.search).get("embed") !== "1") return;
+  document.documentElement.classList.add("embed");
+  const layout = document.querySelector(".layout");
+  if (!layout) return;
+  const report = () => {
+    const height = Math.ceil(layout.getBoundingClientRect().bottom + window.scrollY + 16);
+    window.parent.postMessage({ type: "rag-demo-height", height }, "*");
+  };
+  new ResizeObserver(report).observe(layout);
+  report();
+}
+"""
+
 with gr.Blocks(title="RAG Research Assistant") as demo:
     gr.HTML(
         '<header class="top"><span class="mark">t.</span><div><h1>RAG Research Assistant</h1>'
@@ -113,7 +130,7 @@ with gr.Blocks(title="RAG Research Assistant") as demo:
                 ask = gr.Button("Ask", variant="primary", scale=1, min_width=90)
             with gr.Row(elem_classes="chips"):
                 chips = [gr.Button(text, size="sm", elem_classes="chip") for text in EXAMPLES]
-            answer = gr.HTML(render_empty())
+            answer = gr.HTML(render_empty(), elem_classes="answer")
         with gr.Column(scale=2, elem_classes="side"):
             gr.HTML('<p class="label">Papers covered</p>' + render_papers())
             gr.HTML('<p class="label">How it works</p><p class="how">Each question is matched against '
@@ -129,4 +146,4 @@ with gr.Blocks(title="RAG Research Assistant") as demo:
     demo.load(left_text, outputs=left)
 
 if __name__ == "__main__":
-    demo.launch(theme=THEME, css=CSS)
+    demo.launch(theme=THEME, css=CSS, js=EMBED_JS)

@@ -64,3 +64,10 @@ footer { display: none !important; }
   .top h1 { font-size: 22px; }
   .panel { padding: 18px; }
 }
+
+/* Embedded on another page (?embed=1): no header or side panel, answer straight under the question. */
+.embed .gradio-container { padding: 12px 12px 0 !important; }
+.embed .top, .embed .side { display: none !important; }
+.embed .main { display: flex !important; flex-direction: column !important; }
+.embed .main > .answer { order: 1; }
+.embed .main > .chips { order: 2; margin-top: 4px; }
