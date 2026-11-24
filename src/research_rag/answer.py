@@ -24,8 +24,8 @@ PROMPT = ChatPromptTemplate.from_messages([
     ("system",
      "You answer questions about research papers using ONLY the numbered passages given. "
      "Put the passage number in square brackets after each claim, like [2]. "
-     "When the passages support it, give a full explanation in two to four short paragraphs: start with a direct "
-     "answer, then explain how or why, using the details, numbers and examples in the passages. "
+     "Answer in one short paragraph of about four sentences: start with a direct answer, then add the most "
+     "useful detail, number or example from the passages. "
      "Do not pad: if the passages only support a short answer, keep it short. "
      "Do not use outside knowledge. If the passages do not contain the answer, set answered to false "
      f"and reply exactly: {NOT_COVERED} "

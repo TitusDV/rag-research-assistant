@@ -71,3 +71,8 @@ footer { display: none !important; }
 .embed .main { display: flex !important; flex-direction: column !important; }
 .embed .main > .answer { order: 1; }
 .embed .main > .chips { order: 2; margin-top: 4px; }
+.embed.answered .main > .chips { display: none !important; }
+.embed .panel { padding: 18px 20px !important; }
+.embed .panel p:not(.label) { font-size: 16px !important; line-height: 1.55 !important; }
+.embed .source { padding: 10px 12px !important; }
+.embed .source q { margin-top: 4px !important; }

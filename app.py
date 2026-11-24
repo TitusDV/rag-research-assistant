@@ -99,17 +99,27 @@ THEME = gr.themes.Base(
 CSS = (ROOT / "app.css").read_text(encoding="utf-8")
 
 # Opened with ?embed=1 (as on my portfolio page), the app drops its header and side panel, shows the answer
-# right under the question, and tells the page around it how tall it is, so the frame can grow to fit.
+# right under the question, hides the examples once an answer shows, and tells the page around it how tall it is,
+# so the frame can grow to fit.
 EMBED_JS = """
 () => {
   if (new URLSearchParams(location.search).get("embed") !== "1") return;
   document.documentElement.classList.add("embed");
   const layout = document.querySelector(".layout");
-  if (!layout) return;
+  const answer = document.querySelector(".main > .answer");
+  if (!layout || !answer) return;
+  let answers = 0, lastPanel = null;  // counts new answers, so the page can bring each one into view
   const report = () => {
     const height = Math.ceil(layout.getBoundingClientRect().bottom + window.scrollY + 16);
-    window.parent.postMessage({ type: "rag-demo-height", height }, "*");
+    window.parent.postMessage({ type: "rag-demo-height", height, answers }, "*");
   };
+  new MutationObserver(() => {
+    const panel = answer.querySelector(".panel:not(.empty)");
+    if (panel && panel !== lastPanel) answers += 1;
+    lastPanel = panel;
+    document.documentElement.classList.toggle("answered", !!panel);  // hides the examples
+    report();
+  }).observe(answer, { childList: true, subtree: true });
   new ResizeObserver(report).observe(layout);
   report();
 }
